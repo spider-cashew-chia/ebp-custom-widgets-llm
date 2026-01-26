@@ -1,0 +1,129 @@
+.ebp-custom-timeline-1__content-text {
+  border: 1px solid;
+  padding: 1.5rem;
+  height: auto;
+  aspect-ratio: 370 / 190;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+}
+
+.ebp-custom-timeline-1__content-item {
+  text-align: center;
+  /* color: #fff; */
+}
+
+/* Swiper container */
+.ebp-custom-timeline-1__slider-track {
+  width: 100%;
+  /* Add padding to prevent border from being cropped */
+  padding-inline-end: 1px;
+}
+
+.ebp-custom-timeline-1__slider-container {
+  position: relative;
+}
+
+/* Swiper slide styling */
+.ebp-custom-timeline-1__slider-track .swiper-slide {
+  height: auto;
+}
+
+.swiper-wrapper {
+  display: flex;
+}
+
+/* Ensure content items fit properly */
+.ebp-custom-timeline-1__content-item {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 767px) {
+  .ebp-custom-timeline-1__content-item {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .ebp-custom-timeline-1__content-text {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+.ebp-custom-timeline-1__title {
+  margin-block-end: 0rem;
+  padding-block-end: 5rem;
+}
+
+/* .ebp-custom-timeline-1__nav-btn {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  } */
+
+.ebp-custom-timeline-1__nav-btn {
+  border: none;
+  background: transparent;
+}
+
+.ebp-custom-timeline-1__nav-btn span {
+  position: relative;
+}
+
+.nav-button--container {
+  position: relative;
+}
+
+.ebp-custom-timeline-1__nav-btn {
+  position: absolute;
+  /* width: 100%; */
+  z-index: 9;
+  top: 5rem;
+  cursor: pointer;
+}
+
+.ebp-custom-timeline-1__nav-btn--next {
+  right: 0;
+}
+
+.nav-button--container__line {
+  /* background-color: #fff; */
+  height: 1px;
+  width: calc(100% - 4rem);
+  position: absolute;
+  left: 50%;
+  top: calc(5rem + 10.5px);
+  transform: translateX(-50%);
+}
+
+/* .ebp-custom-timeline-1__nav-btn span:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 2px;
+  background: transparent;
+  border: none;
+  background-color: #fff;
+} */
+
+.ebp-custom-timeline-1__nav-btn--next {
+  right: 0;
+  rotate: 180deg;
+}
+
+.ebp-custom-timeline-1__title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ebp-custom-timeline-1__title span:last-child {
+  transform: rotate(-90deg);
+}

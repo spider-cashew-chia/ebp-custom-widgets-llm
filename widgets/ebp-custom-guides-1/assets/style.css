@@ -1,0 +1,26 @@
+.ebp-custom-guides-1__content .grid > div:nth-child(1) {
+  grid-column: 1 / 5;
+  justify-content: flex-start;
+}
+
+.ebp-custom-guides-1__content .grid > div:nth-child(2) {
+  grid-column: 5 / -1;
+}
+
+.ebp-custom-guides-1__content .grid {
+  grid-template-rows: 1fr;
+  gap: 1.5rem;
+}
+
+.ebp-custom-guides-1__content .icon img {
+  max-height: 117px;
+}
+
+.title-download p {
+  font-size: var(--fs-small);
+  font-weight: 300;
+}
+
+/* .title-download h2 {
+  margin-block-end: 2rem !important;
+} */

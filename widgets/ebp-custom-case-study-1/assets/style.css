@@ -1,0 +1,47 @@
+.ebp-custom-case-study-1__content__takeaways {
+  border: 1px solid #e2a23d;
+  padding: 3rem;
+  height: fit-content;
+  margin-block-end: 3rem;
+}
+
+.ebp-custom-case-study-1__content__approach {
+  margin-block-start: 3rem;
+}
+
+.ebp-custom-case-study-1__content h2 {
+  margin-block-end: 1.5rem !important;
+}
+
+/* .ebp-custom-case-study-1__content__takeaways h2 {
+  position: relative;
+}
+
+.ebp-custom-case-study-1__content__takeaways h2:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  background-image: url(/wp-content/uploads/2025/11/llm-icon-outline-yellow.svg);
+  height: 36px;
+  width: 36px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+} */
+
+.ebp-custom-case-study-1__content__takeaways__container__content {
+  padding-inline-start: 1rem;
+}
+.ebp-custom-case-study-1__content__takeaways__container {
+  display: flex;
+  align-items: flex-start;
+}
+
+@media (max-width: 1023px) {
+  .ebp-custom-case-study-1__content__takeaways {
+    padding: 1.5rem;
+  }
+}

@@ -1,0 +1,27 @@
+.ebp-custom-contact-1__items > div:nth-child(1) {
+  border: 1px solid;
+  padding: 4rem 1.5rem 1.5rem 1.5rem;
+}
+
+.ebp-custom-contact-1__items > div:nth-child(2) {
+  padding-block-start: 4rem;
+}
+
+.ebp-custom-contact-1__items {
+  gap: 8rem;
+}
+
+.ebp-custom-contact-1__item h2 {
+  margin-block-end: 2.5rem !important;
+}
+
+.ebp-custom-contact-1__item strong {
+  font-weight: 900 !important;
+  font-size: 1.25rem !important;
+}
+
+@media (max-width: 1023px) {
+  .ebp-custom-contact-1__items {
+    gap: 2rem;
+  }
+}

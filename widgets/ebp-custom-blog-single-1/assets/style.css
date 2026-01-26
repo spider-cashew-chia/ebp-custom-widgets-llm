@@ -1,0 +1,33 @@
+.ebp-custom-blog-single-1__inner {
+  gap: 2rem !important;
+}
+
+.single-blog blockquote {
+  position: relative;
+  padding-inline-start: 4rem;
+  margin-inline-start: 0;
+  margin-block: 3rem !important;
+}
+
+.single-blog blockquote:before {
+  content: '';
+  background-image: url(http://llm-site.local/wp-content/uploads/2025/11/llm-icon-outline.svg);
+  width: 2.5rem;
+  height: 2.5rem;
+  display: block;
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.ebp-custom-blog-single-1__title {
+  margin-block-end: var(--margin-block);
+}
+
+@media (max-width: 767px) {
+  .single-blog blockquote {
+    margin-inline-end: 0;
+  }
+}

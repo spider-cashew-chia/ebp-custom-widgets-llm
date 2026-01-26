@@ -1,0 +1,41 @@
+.ebp-custom-resources-1__content {
+  padding-inline-start: 10rem;
+  position: relative;
+  margin-block-end: 3.5rem;
+}
+
+.ebp-custom-resources-1__content:last-of-type {
+  margin-block-end: 0;
+}
+
+.ebp-custom-resources-1__content:before {
+  content: '';
+  background-image: url('http://llm-site.local/wp-content/uploads/2025/11/llm-dark-icon-down.svg');
+  width: 3.5rem;
+  height: 3.5rem;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  left: 1.5rem;
+  top: 0;
+}
+
+.ebp-custom-resources-1__title {
+  margin-block-end: 1rem !important;
+}
+
+.ebp-custom-resources-1__title a,
+.ebp-custom-resources-1__content a {
+  text-decoration: underline !important;
+}
+
+@media (max-width: 767px) {
+  .ebp-custom-resources-1__content {
+    padding-inline-start: 5rem;
+  }
+
+  .ebp-custom-resources-1__content:before {
+    left: 0;
+  }
+}

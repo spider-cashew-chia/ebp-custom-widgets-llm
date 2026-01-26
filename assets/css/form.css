@@ -1,0 +1,58 @@
+.footer-content__newsletter-form .form-input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid currentColor;
+  box-shadow: none;
+  padding-block-end: 1.25rem;
+  margin-block-end: 1.25rem;
+  color: inherit;
+  width: 100%;
+}
+
+.ebp-custom-contact-1 .form-input {
+  background-color: transparent;
+  border: none;
+  border-top: 1px solid currentColor;
+  box-shadow: none;
+  padding-block: 1.25rem;
+  /* margin-block-end: 1.25rem; */
+  color: inherit;
+  width: 100%;
+}
+
+textarea {
+  height: 8rem;
+}
+
+.wpcf7-submit {
+  margin-inline-start: auto;
+  display: flex;
+  cursor: pointer;
+}
+
+.ebp-custom-contact-1 .wpcf7-submit {
+  margin-inline-start: 0;
+  margin-inline-end: auto;
+}
+
+::placeholder {
+  color: inherit;
+  text-transform: uppercase;
+}
+
+.wpcf7-form {
+  position: relative;
+}
+
+.wpcf7-spinner {
+  position: absolute;
+  right: 0;
+}
+
+.wpcf7 form.invalid .wpcf7-response-output,
+.wpcf7 form.unaccepted .wpcf7-response-output,
+.wpcf7 form.payment-required .wpcf7-response-output {
+  border: none;
+  padding-inline-start: 0;
+  margin-inline-start: 0;
+}

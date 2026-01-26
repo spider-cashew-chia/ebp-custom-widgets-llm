@@ -1,0 +1,72 @@
+.ebp-custom-accordion-1 button {
+  background-color: transparent;
+  border: 0;
+  color: inherit;
+  padding: 0;
+  width: 100%;
+}
+
+.ebp-custom-accordion-1__intro h2:before {
+  content: '';
+  mask: url(http://llm-site.local/wp-content/uploads/2025/11/llm-icon.svg)
+    no-repeat center;
+  background-color: currentColor;
+  height: 2rem;
+  width: 2rem;
+  display: block;
+  flex-shrink: 0;
+  margin-block-start: 7px;
+}
+
+.ebp-custom-accordion-1__intro h2 {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  margin-block-end: 1.5rem !important;
+}
+
+/* Hide accordion content by default */
+.ebp-custom-accordion-1__item-content {
+  display: none;
+}
+
+/* Show accordion content when item is open */
+.ebp-custom-accordion-1__item.is-open .ebp-custom-accordion-1__item-content {
+  display: block;
+}
+
+.ebp-custom-accordion-1__item-title h3 {
+  margin: 0 !important;
+  text-align: left;
+  padding-block: 1.5rem !important;
+}
+
+.ebp-custom-accordion-1__item {
+  display: block;
+  width: 100%;
+
+  border-bottom: 1px solid;
+}
+
+.ebp-custom-accordion-1__item-title {
+  cursor: pointer;
+}
+
+.ebp-custom-accordion-1__item {
+  position: relative;
+}
+
+.ebp-custom-accordion-1__icon {
+  position: absolute;
+  right: 0;
+  bottom: 1.5rem;
+}
+
+.accordion-item-text > p {
+  margin-block-end: 5.75rem !important;
+}
+
+.ebp-custom-accordion-1__item:not(.is-open) .ebp-custom-accordion-1__icon {
+  transform: rotate(180deg);
+  bottom: 2rem;
+}

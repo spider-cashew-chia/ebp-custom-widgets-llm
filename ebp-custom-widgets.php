@@ -102,6 +102,7 @@ function convert_folder_to_class_name($folder_name)
 
 // Dynamically enqueue all CSS files from assets/css directory
 // This function scans the directory and automatically enqueues any CSS files found
+// Now includes subdirectories like vendor/
 function enqueue_dynamic_css_files()
 {
     // Path to the CSS directory
@@ -112,13 +113,29 @@ function enqueue_dynamic_css_files()
         return;
     }
 
-    // Get all CSS files from the directory
-    // Using glob to find all .css files
-    $css_files = glob($css_dir . '/*.css');
+    // Get all CSS files from the directory and subdirectories
+    // Using RecursiveDirectoryIterator to find all .css files recursively
+    $iterator = new RecursiveIteratorIterator(
+        new RecursiveDirectoryIterator($css_dir, RecursiveDirectoryIterator::SKIP_DOTS)
+    );
+
+    // Array to store CSS files with their relative paths
+    $css_files = [];
+
+    // Loop through all files found
+    foreach ($iterator as $file) {
+        // Only process .css files, skip .map files
+        if ($file->isFile() && $file->getExtension() === 'css' && strpos($file->getFilename(), '.map') === false) {
+            $css_files[] = $file->getPathname();
+        }
+    }
 
     // Loop through each CSS file and enqueue it
     foreach ($css_files as $css_file) {
-        // Get just the filename (e.g., "animate.css")
+        // Get the relative path from the assets/css directory
+        $relative_path = str_replace($css_dir . '/', '', $css_file);
+
+        // Get just the filename for checking skip list
         $filename = basename($css_file);
 
         // Skip main.css and app.min.css - these will be loaded last
@@ -126,14 +143,15 @@ function enqueue_dynamic_css_files()
             continue;
         }
 
-        // Create a unique handle based on the filename (remove .css extension)
-        $handle = 'ebp-' . str_replace('.css', '', $filename);
+        // Create a unique handle based on the relative path (replace slashes with dashes)
+        $handle_name = str_replace(['/', '\\', '.css'], ['-', '-', ''], $relative_path);
+        $handle = 'ebp-' . $handle_name;
 
         // Enqueue the CSS file
         // Using filemtime() to get file modification time for cache busting
         wp_enqueue_style(
             $handle,
-            plugins_url('/assets/css/' . $filename, __FILE__),
+            plugins_url('/assets/css/' . $relative_path, __FILE__),
             [], // No dependencies
             file_exists($css_file) ? filemtime($css_file) : '1.0.0' // Version based on file modification time
         );
@@ -142,6 +160,7 @@ function enqueue_dynamic_css_files()
 
 // Dynamically enqueue all JavaScript files from assets/js directory
 // This function scans the directory and automatically enqueues any JS files found
+// Now includes subdirectories like modules/
 function enqueue_dynamic_js_files()
 {
     // Path to the JS directory
@@ -152,33 +171,45 @@ function enqueue_dynamic_js_files()
         return;
     }
 
-    // Get all JavaScript files from the directory
-    // Using glob to find all .js files (excluding .map files)
-    $js_files = glob($js_dir . '/*.js');
+    // Get all JavaScript files from the directory and subdirectories
+    // Using RecursiveDirectoryIterator to find all .js files recursively
+    $iterator = new RecursiveIteratorIterator(
+        new RecursiveDirectoryIterator($js_dir, RecursiveDirectoryIterator::SKIP_DOTS)
+    );
+
+    // Array to store JS files with their relative paths
+    $js_files = [];
+
+    // Loop through all files found
+    foreach ($iterator as $file) {
+        // Only process .js files, skip .map files
+        if ($file->isFile() && $file->getExtension() === 'js' && strpos($file->getFilename(), '.map') === false) {
+            $js_files[] = $file->getPathname();
+        }
+    }
 
     // Loop through each JS file and enqueue it
     foreach ($js_files as $js_file) {
-        // Get just the filename (e.g., "aos.js")
-        $filename = basename($js_file);
+        // Get the relative path from the assets/js directory
+        $relative_path = str_replace($js_dir . '/', '', $js_file);
 
-        // Skip .map files (source maps)
-        if (strpos($filename, '.map') !== false) {
-            continue;
-        }
+        // Get just the filename for the handle (replace slashes with dashes)
+        $handle_name = str_replace(['/', '\\', '.js'], ['-', '-', ''], $relative_path);
+        $handle = 'ebp-' . $handle_name;
 
-        // Create a unique handle based on the filename (remove .js extension)
-        $handle = 'ebp-' . str_replace('.js', '', $filename);
-
-        // Determine dependencies - most scripts will need jQuery
-        // You can customize this logic if certain files don't need jQuery
+        // Determine dependencies
+        // Most scripts need jQuery, menu.js also needs GSAP
         $dependencies = ['jquery'];
+        if (strpos($relative_path, 'menu.js') !== false) {
+            $dependencies[] = 'ebp-gsap.min';
+        }
 
         // Enqueue the JavaScript file
         // Using filemtime() to get file modification time for cache busting
         // Scripts load in the footer (true) for better page load performance
         wp_enqueue_script(
             $handle,
-            plugins_url('/assets/js/' . $filename, __FILE__),
+            plugins_url('/assets/js/' . $relative_path, __FILE__),
             $dependencies,
             file_exists($js_file) ? filemtime($js_file) : '1.0.0', // Version based on file modification time
             true // Load in footer
