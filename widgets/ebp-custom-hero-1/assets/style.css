@@ -46,6 +46,7 @@
   width: 100%;
   top: 50%;
   transform: translateY(-50%);
+  z-index: 9;
 }
 
 .ebp-custom-hero-1 .absolute-wrapper {
@@ -54,6 +55,7 @@
 
 .ebp-custom-hero-1__image {
   position: relative;
+  overflow: hidden;
 }
 
 .ebp-custom-hero-1__image::before {
@@ -64,10 +66,16 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 46, 54, 0.45);
+  z-index: 1;
 }
 
 .ebp-custom-hero-1__image img {
   width: 100%;
+}
+
+/* SplitText word elements – need inline-block for clip-path reveal (see script.js) */
+.ebp-custom-hero-1 .hero-word {
+  display: inline-block;
 }
 
 .split-char {

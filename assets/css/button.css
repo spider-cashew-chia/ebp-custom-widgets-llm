@@ -83,10 +83,10 @@ input[type='checkbox'] {
   text-decoration: underline !important;
 }
 
-button:hover {
-  /* border-color: transparent; */
+/* button:hover {
+  border-color: transparent;
   transition: border-color 0.3s ease;
-  /* border-color: #e2a23d; */
+  border-color: #e2a23d;
   color: #002e36;
 }
 
@@ -110,6 +110,66 @@ button:hover span:nth-of-type(4) {
   width: calc(100% - var(--offset));
   transition: width 0.3s ease;
   transition-delay: 0.15s;
+} */
+
+a.btn:hover,
+.wpcf7-submit:hover {
+  border: 1px solid transparent;
+  color: #fff;
+}
+
+a.btn,
+.wpcf7-submit {
+  color: #e2a23d;
+  transition: all 0.3s;
+  position: relative;
+}
+/* a.btn span {
+  transition: all 0.3s;
+} */
+a.btn::before,
+.wpcf7-submit:before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0;
+  transition: all 0.3s;
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-top-style: solid;
+  border-bottom-style: solid;
+  border-top-color: currentColor;
+  border-bottom-color: currentColor;
+  transform: scale(0.1, 1);
+}
+/* a.btn:hover span {
+  letter-spacing: 2px;
+} */
+a.btn:hover::before,
+.wpcf7-submit:hover::before {
+  opacity: 1;
+  transform: scale(1, 1);
+}
+a.btn::after,
+.wpcf7-submit::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  transition: all 0.3s;
+  /* background-color: rgba(255, 255, 255, 0.1); */
+}
+a.btn:hover::after,
+.wpcf7-submit:hover::after {
+  opacity: 0;
+  transform: scale(0.1, 1);
 }
 
 @media (max-width: 767px) {

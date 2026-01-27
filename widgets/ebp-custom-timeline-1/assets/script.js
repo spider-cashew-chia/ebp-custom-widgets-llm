@@ -1,13 +1,16 @@
 /**
  * Timeline Slider using Swiper.js
- * Shows 3 slides on desktop, 1 slide on mobile (under 767px)
+ * Shows 3 slides on desktop, 1 slide on mobile (under 767px).
+ * Staggers in .ebp-custom-timeline-1__content-text on scroll using .e-con as trigger.
  */
 
 (function () {
   'use strict';
 
-  // Wait for DOM to be ready and Swiper to be available
+  // Wait for DOM to be ready
   document.addEventListener('DOMContentLoaded', function () {
+    initTimelineScrollReveal();
+
     // Check if Swiper is available
     if (typeof Swiper === 'undefined') {
       console.warn('Swiper.js is not loaded');
@@ -16,7 +19,7 @@
 
     // Find all timeline slider instances on the page
     const timelineSliders = document.querySelectorAll(
-      '.ebp-custom-timeline-1__slider-container'
+      '.ebp-custom-timeline-1__slider-container',
     );
 
     // Initialize each slider instance
@@ -24,6 +27,52 @@
       initTimelineSlider(container);
     });
   });
+
+  /**
+   * Stagger .ebp-custom-timeline-1__content-text in on scroll, using .e-con as trigger
+   */
+  function initTimelineScrollReveal() {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+      return;
+    }
+    gsap.registerPlugin(ScrollTrigger);
+
+    const items = document.querySelectorAll(
+      '.ebp-custom-timeline-1__content-text',
+    );
+    if (items.length === 0) return;
+
+    // Group content-text elements by their closest .e-con (the scroll trigger)
+    const byTrigger = new Map();
+    items.forEach(function (el) {
+      const con = el.closest('.e-con');
+      if (con) {
+        if (!byTrigger.has(con)) {
+          byTrigger.set(con, []);
+        }
+        byTrigger.get(con).push(el);
+      }
+    });
+
+    byTrigger.forEach(function (elements, triggerEl) {
+      gsap.fromTo(
+        elements,
+        { y: 50, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.6,
+          ease: 'power2.out',
+          stagger: 0.3,
+          scrollTrigger: {
+            trigger: triggerEl,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
+        },
+      );
+    });
+  }
 
   /**
    * Initialize a single timeline slider with Swiper.js
@@ -35,10 +84,10 @@
 
     // Get navigation buttons
     const prevBtn = container.querySelector(
-      '.ebp-custom-timeline-1__nav-btn--prev'
+      '.ebp-custom-timeline-1__nav-btn--prev',
     );
     const nextBtn = container.querySelector(
-      '.ebp-custom-timeline-1__nav-btn--next'
+      '.ebp-custom-timeline-1__nav-btn--next',
     );
 
     // Debug: Log button elements

@@ -18,6 +18,11 @@
   height: 100%;
 }
 
+/* Clip zoomed image for scroll scale animation */
+.ebp-custom-feedback-1__content__image {
+  overflow: hidden;
+}
+
 .ebp-custom-feedback-1__content__image img {
   height: 100% !important;
   object-fit: cover;

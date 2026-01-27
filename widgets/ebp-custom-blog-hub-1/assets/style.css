@@ -5,6 +5,11 @@
   height: 100% !important;
 }
 
+/* Clip zoomed image for scroll scale animation */
+.ebp-custom-blog-hub-1__item-image {
+  overflow: hidden;
+}
+
 @media (min-width: 1024px) {
   .grid-masonry {
     grid-template-columns: repeat(6, 1fr);

@@ -1,62 +1,73 @@
 /**
- * Character Split Animation for Hero H1 using GSAP SplitText
- *
- * This script uses GSAP SplitText to split the H1 heading by words
- * (to preserve line breaks) and then by characters, adding space
- * between each character so the heading compresses to its normal size.
+ * Hero H1 word-split reveal using GSAP SplitText
+ * Splits the H1 into words, hides each with clip-path from the bottom,
+ * then reveals them with a staggered animation.
  */
-
 (function () {
   'use strict';
 
-  // Wait for DOM to be ready and GSAP/SplitText to be loaded
-  document.addEventListener('DOMContentLoaded', function () {
-    // Check if GSAP and SplitText are available
-    if (typeof gsap === 'undefined' || typeof SplitText === 'undefined') {
-      console.warn(
-        'GSAP or SplitText not loaded. Hero H1 character splitting will not work.',
+  function runHeroReveal() {
+    if (typeof gsap === 'undefined') {
+      return;
+    }
+
+    const hero = document.querySelector('.ebp-custom-hero-1');
+    if (!hero) return;
+
+    // Hero image: start at scale 1.5, animate to 1
+    const heroImg = hero.querySelector('.ebp-custom-hero-1__image img');
+    if (heroImg) {
+      gsap.fromTo(
+        heroImg,
+        { scale: 1.2 },
+        {
+          scale: 1,
+          duration: 1.2,
+          ease: 'power3.out',
+          delay: 0.4,
+        },
       );
+    }
+
+    if (typeof SplitText === 'undefined') {
       return;
     }
 
-    // Find all H1 elements within the hero widget
-    const heroH1s = document.querySelectorAll('.ebp-custom-hero-1 h1');
+    const h1 = hero.querySelector('.wrapper-hero h1');
+    if (!h1) return;
 
-    // If no H1 elements found, exit early
-    if (heroH1s.length === 0) {
-      return;
-    }
+    if (!h1.textContent.trim()) return;
 
-    // Process each H1 element
-    heroH1s.forEach(function (h1) {
-      // Use SplitText to split by words and characters
-      // This preserves line breaks (words) and splits each word into characters
-      const split = new SplitText(h1, {
-        type: 'words,chars', // Split into words first, then characters
-        wordsClass: 'split-word', // CSS class for each word
-        charsClass: 'split-char', // CSS class for each character
-      });
-
-      // Get all the character elements that SplitText created
-      const chars = split.chars;
-
-      // Set initial state: characters start with 1rem margin-right and are visible
-      // This makes the heading expanded/spread out initially
-      gsap.set(chars, {
-        display: 'inline-block',
-        marginRight: '1.3rem',
-        opacity: 1,
-      });
-
-      // Animate margin-right from 1rem to 0 with a stagger effect
-      // This compresses the heading down to its normal size
-      gsap.to(chars, {
-        marginRight: '0',
-        duration: 1, // Animation duration for each character
-        ease: 'back.out(1.7)', // Easing function for smooth animation
-        delay: 0.3, // 1.5 second delay before animation starts
-        stagger: 0.05, // Small stagger between each character (20ms)
-      });
+    // Use SplitText to split the H1 into word elements
+    const split = new SplitText(h1, {
+      type: 'words',
+      wordsClass: 'hero-word',
     });
-  });
+
+    const words = split.words;
+    console.log('words length:', words.length);
+    console.log(words);
+
+    // Hide from bottom: clip the bottom 100% so nothing shows
+    gsap.set(words, { display: 'inline-block' });
+
+    gsap.fromTo(
+      words,
+      { yPercent: 25, opacity: 0 },
+      {
+        yPercent: 0,
+        opacity: 1,
+        duration: 0.8,
+        ease: 'power3.out',
+        delay: 0.7,
+        stagger: 0.12, // for 4 words this reads nicely
+      },
+    );
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', runHeroReveal);
+  } else {
+    runHeroReveal();
+  }
 })();

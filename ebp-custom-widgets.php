@@ -176,7 +176,7 @@ function enqueue_dynamic_js_files()
     $gsap_file = $js_dir . '/gsap.min.js';
     $scrolltrigger_file = $js_dir . '/ScrollTrigger.min.js';
     $splittext_file = $js_dir . '/SplitText.min.js';
-    
+
     if (file_exists($gsap_file)) {
         wp_enqueue_script(
             'ebp-gsap-min',
@@ -186,7 +186,7 @@ function enqueue_dynamic_js_files()
             true
         );
     }
-    
+
     if (file_exists($scrolltrigger_file)) {
         wp_enqueue_script(
             'ebp-ScrollTrigger-min',
@@ -196,7 +196,7 @@ function enqueue_dynamic_js_files()
             true
         );
     }
-    
+
     if (file_exists($splittext_file)) {
         wp_enqueue_script(
             'ebp-SplitText-min',
@@ -221,11 +221,13 @@ function enqueue_dynamic_js_files()
         // Only process .js files, skip .map files
         // Skip GSAP, ScrollTrigger, and SplitText since we've already enqueued them manually
         $filename = $file->getFilename();
-        if ($file->isFile() && $file->getExtension() === 'js' && 
+        if (
+            $file->isFile() && $file->getExtension() === 'js' &&
             strpos($filename, '.map') === false &&
-            $filename !== 'gsap.min.js' && 
+            $filename !== 'gsap.min.js' &&
             $filename !== 'ScrollTrigger.min.js' &&
-            $filename !== 'SplitText.min.js') {
+            $filename !== 'SplitText.min.js'
+        ) {
             $js_files[] = $file->getPathname();
         }
     }
@@ -320,13 +322,23 @@ function my_widget_assets()
             if (file_exists($script_file)) {
                 // Determine dependencies based on widget
                 $dependencies = ['jquery'];
-                
+
                 // Widgets that use GSAP and ScrollTrigger
-                if ($folder_name === 'ebp-custom-team-1') {
+                if (
+                    $folder_name === 'ebp-custom-team-1' ||
+                    $folder_name === 'ebp-custom-timeline-1' ||
+                    $folder_name === 'ebp-custom-stats-1'
+                ) {
                     $dependencies[] = 'ebp-gsap-min';
                     $dependencies[] = 'ebp-ScrollTrigger-min';
                 }
-                
+
+                // Hero uses GSAP + SplitText for word reveal
+                if ($folder_name === 'ebp-custom-hero-1') {
+                    $dependencies[] = 'ebp-gsap-min';
+                    $dependencies[] = 'ebp-SplitText-min';
+                }
+
                 wp_enqueue_script(
                     $folder_name . '-script',
                     plugins_url('/widgets/' . $folder_name . '/assets/script.js', __FILE__),
@@ -371,9 +383,9 @@ function add_loading_animation_to_head()
         return;
     }
     ?>
-<!-- <div id="ebp-loading-overlay">
+    <!-- <div id="ebp-loading-overlay">
         <div class="ebp-loading-content"></div>
     </div> -->
-<?php
+    <?php
 }
 add_action('wp_head', 'add_loading_animation_to_head', 1);
