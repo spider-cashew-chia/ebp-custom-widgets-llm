@@ -64,8 +64,9 @@
   transition: background-color 0.3s ease;
 }
 
-.elementor-location-header.scrolled {
-  background-color: #09788b;
+/* Header styles when scrolled - using body.scrolled for consistency */
+body.scrolled .elementor-location-header {
+  background-color: #002e36;
   transition: all 0.3s ease;
   border-bottom: 1px solid #e2a23d;
 }
@@ -75,12 +76,12 @@
   transition: all 0.3s ease;
 }
 
-.elementor-location-header.scrolled .site-branding img {
+body.scrolled .elementor-location-header .site-branding img {
   width: 140px;
   transition: all 0.3s ease;
 }
 
-.elementor-location-header.scrolled .ebp-custom-header-1 {
+body.scrolled .elementor-location-header .ebp-custom-header-1 {
   margin-block-start: 1rem;
   transition: all 0.3s ease;
 }
@@ -127,8 +128,10 @@ body.scrolled .side-ctas {
   transition: right 0.3s ease;
 }
 
-body:not(.scrolled) .side-ctas > a:hover {
-  right: 0;
+@media (min-width: 768px) {
+  body:not(.scrolled) .side-ctas > a:hover {
+    right: 0;
+  }
 }
 
 .side-ctas .side-ctas__book {
@@ -153,7 +156,12 @@ body:not(.scrolled) .side-ctas > a:hover {
   }
 
   .side-ctas {
-    top: auto;
-    bottom: 2rem;
+    top: 125px;
+    bottom: auto;
+  }
+
+  /* Collapse CTAs by default on mobile */
+  body.mobile-collapsed .side-ctas {
+    right: -191px;
   }
 }

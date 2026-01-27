@@ -305,56 +305,55 @@ class Ebp_Custom_Text_Image_1 extends Widget_Base
         $hide_icon = !empty($settings['hide_icon']) && $settings['hide_icon'] === 'yes';
 
         ?>
-<!-- Text Image 1 -->
-<div class="<?php echo esc_attr($wrapper_class); ?>">
-    <?php if (!empty($image_url)): ?>
-    <div class="ebp-custom-text-image-1__image">
-        <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo $image_alt; ?>">
-    </div>
-    <?php endif; ?>
-    <div class="<?php echo esc_attr($content_class); ?>">
-        <div class="banner-wrapper">
-            <div class="absolute-wrapper">
-                <div class="wrapper">
-                    <div class="content">
-                        <div class="border">
-                            <?php if (!empty($rich_text)): ?>
-                            <!-- Wrap the text so the heading size class can hook in -->
-                            <div class="text-content <?php echo esc_attr($heading_size); ?>">
-                                <?php echo wp_kses_post($rich_text); ?>
+        <!-- Text Image 1 -->
+        <div class="<?php echo esc_attr($wrapper_class); ?>">
+            <?php if (!empty($image_url)): ?>
+                <div class="ebp-custom-text-image-1__image">
+                    <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo $image_alt; ?>">
+                </div>
+            <?php endif; ?>
+            <div class="<?php echo esc_attr($content_class); ?>">
+                <div class="banner-wrapper">
+                    <div class="absolute-wrapper">
+                        <div class="wrapper">
+                            <div class="content">
+                                <div class="border">
+                                    <?php if (!empty($rich_text)): ?>
+                                        <!-- Wrap the text so the heading size class can hook in -->
+                                        <div class="text-content <?php echo esc_attr($heading_size); ?>">
+                                            <?php echo wp_kses_post($rich_text); ?>
+                                        </div>
+                                    <?php endif; ?>
+
+                                    <?php if (!empty($button_url) && !empty($button_text)): ?>
+                                        <a href="<?php echo esc_url($button_url); ?>" class="btn" <?php echo $button_target; ?>
+                                            <?php echo $button_nofollow; ?>>
+                                            <?php echo esc_html($button_text); ?>
+                                        </a>
+                                    <?php endif; ?>
+
+                                    <?php if (!empty($quote_author)): ?>
+                                        <div class="quote-author">
+                                            <?php echo wp_kses_post($quote_author); ?>
+                                        </div>
+                                    <?php endif; ?>
+
+                                    <?php if (!$hide_icon): ?>
+                                        <svg id="Layer_1" data-name="Layer 1" xmlns="www.w3.org/2000/svg" viewBox="0 0 36 36">
+                                            <path id="Path_1319" data-name="Path 1319" d="M0,36l18-18,18,18V0H0v36Z"
+                                                stroke-width="0" />
+                                        </svg>
+                                    <?php endif; ?>
+                                </div>
+
                             </div>
-                            <?php endif; ?>
 
-                            <?php if (!empty($button_url) && !empty($button_text)): ?>
-                            <a href="<?php echo esc_url($button_url); ?>" class="btn" <?php echo $button_target; ?>
-                                <?php echo $button_nofollow; ?>>
-                                <?php echo esc_html($button_text); ?>
-                            </a>
-                            <?php endif; ?>
-
-                            <?php if (!empty($quote_author)): ?>
-                            <div class="quote-author">
-                                <?php echo wp_kses_post($quote_author); ?>
-                            </div>
-                            <?php endif; ?>
-
-                            <?php if (!$hide_icon): ?>
-                            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 36 36">
-                                <path id="Path_1319" data-name="Path 1319" d="M0,36l18-18,18,18V0H0v36Z"
-                                    stroke-width="0" />
-                            </svg>
-                            <?php endif; ?>
                         </div>
-
                     </div>
-
                 </div>
             </div>
         </div>
-    </div>
-</div>
 
-<?php
+        <?php
     }
 }

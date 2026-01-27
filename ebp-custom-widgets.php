@@ -171,6 +171,42 @@ function enqueue_dynamic_js_files()
         return;
     }
 
+    // Manually enqueue GSAP core libraries first to ensure they're registered
+    // This ensures dependencies work correctly
+    $gsap_file = $js_dir . '/gsap.min.js';
+    $scrolltrigger_file = $js_dir . '/ScrollTrigger.min.js';
+    $splittext_file = $js_dir . '/SplitText.min.js';
+    
+    if (file_exists($gsap_file)) {
+        wp_enqueue_script(
+            'ebp-gsap-min',
+            plugins_url('/assets/js/gsap.min.js', __FILE__),
+            ['jquery'], // GSAP doesn't need jQuery, but keeping for consistency
+            file_exists($gsap_file) ? filemtime($gsap_file) : '1.0.0',
+            true
+        );
+    }
+    
+    if (file_exists($scrolltrigger_file)) {
+        wp_enqueue_script(
+            'ebp-ScrollTrigger-min',
+            plugins_url('/assets/js/ScrollTrigger.min.js', __FILE__),
+            ['ebp-gsap-min'], // ScrollTrigger depends on GSAP
+            file_exists($scrolltrigger_file) ? filemtime($scrolltrigger_file) : '1.0.0',
+            true
+        );
+    }
+    
+    if (file_exists($splittext_file)) {
+        wp_enqueue_script(
+            'ebp-SplitText-min',
+            plugins_url('/assets/js/SplitText.min.js', __FILE__),
+            ['ebp-gsap-min'], // SplitText depends on GSAP
+            file_exists($splittext_file) ? filemtime($splittext_file) : '1.0.0',
+            true
+        );
+    }
+
     // Get all JavaScript files from the directory and subdirectories
     // Using RecursiveDirectoryIterator to find all .js files recursively
     $iterator = new RecursiveIteratorIterator(
@@ -183,7 +219,13 @@ function enqueue_dynamic_js_files()
     // Loop through all files found
     foreach ($iterator as $file) {
         // Only process .js files, skip .map files
-        if ($file->isFile() && $file->getExtension() === 'js' && strpos($file->getFilename(), '.map') === false) {
+        // Skip GSAP, ScrollTrigger, and SplitText since we've already enqueued them manually
+        $filename = $file->getFilename();
+        if ($file->isFile() && $file->getExtension() === 'js' && 
+            strpos($filename, '.map') === false &&
+            $filename !== 'gsap.min.js' && 
+            $filename !== 'ScrollTrigger.min.js' &&
+            $filename !== 'SplitText.min.js') {
             $js_files[] = $file->getPathname();
         }
     }
@@ -198,10 +240,21 @@ function enqueue_dynamic_js_files()
         $handle = 'ebp-' . $handle_name;
 
         // Determine dependencies
-        // Most scripts need jQuery, menu.js also needs GSAP
+        // Most scripts need jQuery, menu.js and main.js also need GSAP
         $dependencies = ['jquery'];
-        if (strpos($relative_path, 'menu.js') !== false) {
-            $dependencies[] = 'ebp-gsap.min';
+        // GSAP handle: gsap.min.js becomes ebp-gsap-min
+        if (strpos($relative_path, 'menu.js') !== false || strpos($relative_path, 'modules/main.js') !== false) {
+            $dependencies[] = 'ebp-gsap-min';
+        }
+        // ScrollTrigger needs GSAP
+        // ScrollTrigger.min.js becomes ebp-ScrollTrigger-min
+        if (strpos($relative_path, 'ScrollTrigger.min.js') !== false) {
+            $dependencies[] = 'ebp-gsap-min';
+        }
+        // Modules that use ScrollTrigger and SplitText need GSAP, ScrollTrigger, and SplitText
+        if (strpos($relative_path, 'modules/main.js') !== false) {
+            $dependencies[] = 'ebp-ScrollTrigger-min';
+            $dependencies[] = 'ebp-SplitText-min';
         }
 
         // Enqueue the JavaScript file
@@ -265,10 +318,19 @@ function my_widget_assets()
 
             // Enqueue JS if it exists
             if (file_exists($script_file)) {
+                // Determine dependencies based on widget
+                $dependencies = ['jquery'];
+                
+                // Widgets that use GSAP and ScrollTrigger
+                if ($folder_name === 'ebp-custom-team-1') {
+                    $dependencies[] = 'ebp-gsap-min';
+                    $dependencies[] = 'ebp-ScrollTrigger-min';
+                }
+                
                 wp_enqueue_script(
                     $folder_name . '-script',
                     plugins_url('/widgets/' . $folder_name . '/assets/script.js', __FILE__),
-                    ['jquery'],
+                    $dependencies,
                     file_exists($script_file) ? filemtime($script_file) : '1.0.0',
                     true
                 );

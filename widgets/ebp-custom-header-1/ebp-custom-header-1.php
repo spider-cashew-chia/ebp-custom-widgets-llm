@@ -154,7 +154,7 @@ class Ebp_Custom_Header_1 extends Widget_Base
         </div>
         <div class="side-ctas">
             <a href="/contact" class="side-ctas__book">
-                <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36">
+                <svg id="Layer_1" data-name="Layer 1" xmlns="www.w3.org/2000/svg" viewBox="0 0 36 36">
                     <path id="Path_1302" data-name="Path 1302" d="M36,0l-18,18L0,0v36h36V0Z" fill="#e2a23d"
                         stroke-width="0" />
                 </svg>
@@ -162,8 +162,8 @@ class Ebp_Custom_Header_1 extends Widget_Base
 
             </a>
             <a href="/contact" class="side-ctas__talk">
-                <svg id="Group_1074" data-name="Group 1074" xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 26.18 25.64">
+                <svg id="Group_1074" data-name="Group 1074" xmlns="www.w3.org/2000/svg"
+                    xmlns:xlink="www.w3.org/1999/xlink" viewBox="0 0 26.18 25.64">
                     <defs>
                         <clipPath id="clippath">
                             <rect width="26.18" height="25.64" fill="none" stroke-width="0" />

@@ -533,7 +533,7 @@ class Ebp_Custom_Text_Columns_1 extends Widget_Base
         <div class="<?php echo esc_attr($div_class); ?>">
             <?php if ($show_icon && !empty($icon_url)): ?>
             <div class="icon <?php echo esc_attr($icon_padding_block_end); ?>">
-                <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36">
+                <svg id="Layer_1" data-name="Layer 1" xmlns="www.w3.org/2000/svg" viewBox="0 0 36 36">
                     <path id="Path_1308" data-name="Path 1308" d="M36,0l-18,18L0,0v36h36V0Z" fill="currentColor"
                         stroke-width="0" />
                 </svg>

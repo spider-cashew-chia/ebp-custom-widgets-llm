@@ -11,7 +11,7 @@
 
 .single-blog blockquote:before {
   content: '';
-  background-image: url(http://llm-site.local/wp-content/uploads/2025/11/llm-icon-outline.svg);
+  background-image: url(/wp-content/uploads/2025/11/llm-icon-outline.svg);
   width: 2.5rem;
   height: 2.5rem;
   display: block;

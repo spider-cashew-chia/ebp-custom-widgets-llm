@@ -127,39 +127,37 @@ class Ebp_Custom_Team_1 extends Widget_Base
         <div class="ebp-custom-team-1__inner grid-masonry">
             <?php if (!empty($team_members)): ?>
             <?php foreach ($team_members as $member): ?>
-            <a href="#">
-                <!-- Team member item -->
-                <div class="ebp-custom-team-1__item">
-                    <div class="ebp-custom-team-1__item-inner">
-                        <?php if (!empty($member['member_image']['url'])): ?>
-                        <!-- Team member image -->
-                        <div class="ebp-custom-team-1__item-image">
-                            <img src="<?php echo esc_url($member['member_image']['url']); ?>"
-                                alt="<?php echo esc_attr($member['member_name']); ?>">
+            <!-- Team member item -->
+            <div class="ebp-custom-team-1__item">
+                <div class="ebp-custom-team-1__item-inner">
+                    <?php if (!empty($member['member_image']['url'])): ?>
+                    <!-- Team member image -->
+                    <div class="ebp-custom-team-1__item-image">
+                        <img src="<?php echo esc_url($member['member_image']['url']); ?>"
+                            alt="<?php echo esc_attr($member['member_name']); ?>">
+                    </div>
+                    <?php endif; ?>
+
+                    <div class="animated-text">
+                        <?php if (!empty($member['member_name'])): ?>
+                        <!-- Team member name -->
+                        <div class="ebp-custom-team-1__item-name">
+                            <h3>
+                                <?php echo esc_html($member['member_name']); ?>
+                            </h3>
                         </div>
                         <?php endif; ?>
 
-                        <div class="animated-text">
-                            <?php if (!empty($member['member_name'])): ?>
-                            <!-- Team member name -->
-                            <div class="ebp-custom-team-1__item-name">
-                                <h3>
-                                    <?php echo esc_html($member['member_name']); ?>
-                                </h3>
-                            </div>
-                            <?php endif; ?>
-
-                            <?php if (!empty($member['member_role'])): ?>
-                            <!-- Team member role -->
-                            <div class="ebp-custom-team-1__item-role">
-                                <?php echo esc_html($member['member_role']); ?>
-                            </div>
-                            <?php endif; ?>
+                        <?php if (!empty($member['member_role'])): ?>
+                        <!-- Team member role -->
+                        <div class="ebp-custom-team-1__item-role">
+                            <?php echo esc_html($member['member_role']); ?>
                         </div>
-
+                        <?php endif; ?>
                     </div>
+
                 </div>
-            </a>
+            </div>
             <?php endforeach; ?>
             <?php endif; ?>
         </div>

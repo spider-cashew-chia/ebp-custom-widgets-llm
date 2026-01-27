@@ -142,7 +142,7 @@ class Ebp_Custom_Map_1 extends Widget_Base
 
             // ✅ Custom SVG marker
             const iconImg = document.createElement("img");
-            iconImg.src = "/wp-content/uploads/2025/11/llm-dark-icon-down.svg";
+            iconImg.src = "/wp-content/uploads/2025/11/llm-icon.svg";
             iconImg.style.width = "40px";
             iconImg.style.height = "40px";
 

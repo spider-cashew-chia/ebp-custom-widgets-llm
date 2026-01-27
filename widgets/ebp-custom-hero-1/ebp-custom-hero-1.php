@@ -150,7 +150,7 @@ class Ebp_Custom_Hero_1 extends Widget_Base
     <div class="ebp-custom-hero-1__content">
         <div class="banner-wrapper">
             <div class="absolute-wrapper">
-                <div class="wrapper">
+                <div class="wrapper-hero">
                     <?php echo wp_kses_post($hero_content); ?>
                 </div>
             </div>

@@ -8,8 +8,7 @@
 
 .ebp-custom-accordion-1__intro h2:before {
   content: '';
-  mask: url(http://llm-site.local/wp-content/uploads/2025/11/llm-icon.svg)
-    no-repeat center;
+  mask: url(/wp-content/uploads/2025/11/llm-icon.svg) no-repeat center;
   background-color: currentColor;
   height: 2rem;
   width: 2rem;
@@ -39,6 +38,7 @@
   margin: 0 !important;
   text-align: left;
   padding-block: 1.5rem !important;
+  padding-inline-end: 1rem;
 }
 
 .ebp-custom-accordion-1__item {

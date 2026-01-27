@@ -10,7 +10,7 @@
 
 .ebp-custom-resources-1__content:before {
   content: '';
-  background-image: url('http://llm-site.local/wp-content/uploads/2025/11/llm-dark-icon-down.svg');
+  background-image: url('/wp-content/uploads/2025/11/llm-dark-icon-down.svg');
   width: 3.5rem;
   height: 3.5rem;
   background-size: contain;
