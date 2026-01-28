@@ -112,7 +112,7 @@ class Ebp_Custom_Map_1 extends Widget_Base
                 console.warn(p + " only loads once. Ignoring subsequent calls.") :
                 (d[l] = (f, ...n) => (r.add(f), u().then(() => d[l](f, ...n))));
         })({
-            key: "AIzaSyAUVnGvh6UxSAl83FOmuOQrwEzCfb_yUwo",
+            key: "",
             v: "weekly",
         });
 
