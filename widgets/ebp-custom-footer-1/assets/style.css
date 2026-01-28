@@ -112,3 +112,37 @@
     grid-row-gap: 2rem;
   }
 }
+
+/* Scroll tracker – clock face style, fixed bottom-left */
+.ebp-scroll-percentage-tracker {
+  position: fixed;
+  bottom: var(--padding-block, 1.5rem);
+  left: -1px;
+  z-index: 9999;
+  width: 40px;
+  height: 40px;
+  pointer-events: none;
+  background-color: #002e36;
+  border: 1px solid #e2a23d;
+  border-left: none;
+  padding: 0.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Clock face background ring */
+.ebp-scroll-percentage-tracker .ebp-scroll-percentage-face {
+  stroke: rgba(255, 255, 255, 0.3);
+  stroke-width: 3;
+}
+
+/* Progress ring – draws clockwise from 12 o’clock */
+.ebp-scroll-percentage-tracker .ebp-scroll-percentage-progress {
+  stroke: #e2a23d;
+  stroke-width: 3;
+  stroke-linecap: round;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+  transition: stroke-dashoffset 0.08s ease-out;
+}

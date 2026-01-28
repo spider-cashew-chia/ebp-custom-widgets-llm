@@ -88,10 +88,9 @@
   } */
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1199px) {
   .ebp-custom-hero-1 {
-    padding-inline: 0.5rem;
-    padding-block-start: 1rem;
+    padding: 1rem;
   }
 
   .ebp-custom-hero-1 .absolute-wrapper {
@@ -104,6 +103,13 @@
 
   .ebp-custom-hero-1 h1 {
     line-height: 0.9 !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .ebp-custom-hero-1__content,
+  .side-ctas {
+    display: none;
   }
 }
 

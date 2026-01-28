@@ -325,6 +325,7 @@ function my_widget_assets()
 
                 // Widgets that use GSAP and ScrollTrigger
                 if (
+                    $folder_name === 'ebp-custom-blog-hub-1' ||
                     $folder_name === 'ebp-custom-team-1' ||
                     $folder_name === 'ebp-custom-timeline-1' ||
                     $folder_name === 'ebp-custom-stats-1'

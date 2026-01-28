@@ -53,5 +53,27 @@
       end: 'top 50%', // End animation when top of batch is 50% down the viewport
       toggleActions: 'play none none none', // Only play on enter, no reverse
     });
+
+    // On touch devices (no hover), animate .animated-text when its item scrolls into view
+    // Uses .ebp-custom-team-1__item as the scroll trigger so text slides in on reveal
+    if (window.matchMedia('(hover: none)').matches) {
+      teamItems.forEach(function (item) {
+        const animatedText = item.querySelector('.animated-text');
+        if (!animatedText) return;
+
+        ScrollTrigger.create({
+          trigger: item,
+          start: 'top 85%', // Same threshold as the clip-path batch for consistency
+          onEnter: function () {
+            gsap.to(animatedText, {
+              left: 0,
+              duration: 0.3,
+              ease: 'power2.inOut',
+            });
+          },
+          toggleActions: 'play none none none', // Run once on enter, no reverse
+        });
+      });
+    }
   });
 })();

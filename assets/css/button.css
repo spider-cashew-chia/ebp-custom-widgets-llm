@@ -124,6 +124,12 @@ a.btn,
   transition: all 0.3s;
   position: relative;
 }
+
+.wpcf7-submit:hover,
+.wpcf7-submit {
+  color: #000;
+}
+
 /* a.btn span {
   transition: all 0.3s;
 } */

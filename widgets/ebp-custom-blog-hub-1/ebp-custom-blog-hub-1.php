@@ -71,7 +71,7 @@ class Ebp_Custom_Blog_Hub_1 extends Widget_Base
             <?php while ($blog_query->have_posts()):
                             $blog_query->the_post(); ?>
             <!-- Blog post item -->
-            <a href="<?php the_permalink(); ?>">
+            <a href="<?php the_permalink(); ?>" aria-label="<?php echo esc_attr('Read more about ' . get_the_title()); ?>">
                 <div class="ebp-custom-blog-hub-1__item">
                     <div class="ebp-custom-blog-hub-1__item-inner">
                         <?php if (has_post_thumbnail()): ?>
@@ -85,6 +85,8 @@ class Ebp_Custom_Blog_Hub_1 extends Widget_Base
                             <h3 class="ebp-custom-blog-hub-1__item-title">
                                 <?php the_title(); ?>
                             </h3>
+                            <!-- Read more text for visual hint and context -->
+                            <p class="ebp-custom-blog-hub-1__item-read-more"><?php _e('Read more', 'ebp-custom-widgets'); ?></p>
                         </div>
 
                     </div>

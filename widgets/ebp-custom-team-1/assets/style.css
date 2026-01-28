@@ -40,10 +40,10 @@
   top: 50%;
   transform: translateY(-50%);
   background-color: #fff;
-  padding: 1.5rem;
+  padding: 0.6rem 1.5rem;
   font-size: var(--font-secondary);
   left: -100%;
-  transition: left 0.3s ease-in-out;
+  transition: left 0.5s ease-in-out;
 }
 
 .animated-text h3 {
@@ -51,7 +51,19 @@
   color: #e2a23d;
 }
 
-.grid-masonry > .ebp-custom-team-1__item:hover .animated-text {
-  left: 0;
-  transition: left 0.3s ease-in-out;
+/* On touch devices: pin animated text to bottom instead of vertically centring */
+@media (hover: none) {
+  .animated-text {
+    top: auto;
+    transform: none;
+    bottom: 0;
+  }
+}
+
+/* Hover reveal only on devices that support hover (mouse/trackpad), not on touch */
+@media (hover: hover) {
+  .grid-masonry > .ebp-custom-team-1__item:hover .animated-text {
+    left: 0;
+    transition: left 0.3s ease-in-out;
+  }
 }

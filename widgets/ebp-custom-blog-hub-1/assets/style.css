@@ -58,7 +58,24 @@
   color: #e2a23d;
 }
 
-.ebp-custom-blog-hub-1__inner a:hover .animated-text {
-  left: 0;
-  transition: left 0.3s ease-in-out;
+.ebp-custom-blog-hub-1__item-read-more {
+  margin-block-end: 0 !important;
+  font-size: 0.875rem;
+}
+
+/* On touch devices: pin animated text to bottom instead of vertically centring */
+@media (hover: none) {
+  .ebp-custom-blog-hub-1__inner .animated-text {
+    top: auto;
+    transform: none;
+    bottom: 0;
+  }
+}
+
+/* Hover reveal only on devices that support hover (mouse/trackpad), not on touch */
+@media (hover: hover) {
+  .ebp-custom-blog-hub-1__inner a:hover .animated-text {
+    left: 0;
+    transition: left 0.3s ease-in-out;
+  }
 }

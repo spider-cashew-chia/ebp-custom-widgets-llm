@@ -73,7 +73,7 @@
         { scale: 1.3 },
         {
           scale: 1,
-          duration: 1.3,
+          duration: 2.5,
           ease: 'power4.out',
           scrollTrigger: {
             trigger: wrapper,
