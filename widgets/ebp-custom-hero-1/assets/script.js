@@ -22,9 +22,9 @@
         { scale: 1.2 },
         {
           scale: 1,
-          duration: 1.2,
+          duration: 1.4,
           ease: 'power3.out',
-          delay: 0.4,
+          delay: 0.3,
         },
       );
     }
